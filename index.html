@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chukwu Clement | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loader"><h2>Loading...</h2></div>
+
+<header class="hero">
+  <div class="hero-image">
+    <img src="profile.jpg" alt="Chukwu Clement profile picture">
+  </div>
+
+  <div class="hero-text">
+    <p class="welcome">WELCOME TO MY PORTFOLIO</p>
+    <h1>Chukwu Clement</h1>
+    <p>Data Analyst | Project Manager | Web Developer | Mathematics Graduate</p>
+    <button id="contactButton">Contact Me</button>
+    <a href="#" class="hero-button">Download CV</a>
+  </div>
+</header>
+
+<nav>
+  <button id="menuButton">☰ Menu</button>
+  <div id="navLinks">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<button id="themeButton">Dark Mode</button>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <div class="about-text">
+      <h3>Who I Am</h3>
+      <p>I am a Mathematics graduate with an interest in data analysis, project management and web development.</p>
+      <p>I enjoy using technology and problem-solving skills to turn information into useful solutions.</p>
+      <h3>My Career Goal</h3>
+      <p>My goal is to become a highly skilled data analyst and build projects that solve real-world problems.</p>
+    </div>
+    <div class="about-info">
+      <p><strong>Education:</strong> BSc Pure Mathematics</p>
+      <p><strong>Interests:</strong> Data Analysis, Technology, Web Development</p>
+      <p><strong>Tools:</strong> Excel, SQL, Power BI, Python</p>
+      <p><strong>Certification:</strong> Certificate in Project Management</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>My Skills</h2>
+
+  <div class="skill"><p>Excel</p><div class="skill-bar"><div class="skill-level excel">90%</div></div></div>
+  <div class="skill"><p>SQL</p><div class="skill-bar"><div class="skill-level sql">80%</div></div></div>
+  <div class="skill"><p>Power BI</p><div class="skill-bar"><div class="skill-level powerbi">70%</div></div></div>
+  <div class="skill"><p>HTML</p><div class="skill-bar"><div class="skill-level html">85%</div></div></div>
+  <div class="skill"><p>Project Management</p><div class="skill-bar"><div class="skill-level project-management">75%</div></div></div>
+
+  <div class="skills-container">
+    <div class="card"><h3>Excel</h3><p>Data analysis, formulas and dashboards.</p></div>
+    <div class="card"><h3>SQL</h3><p>Working with databases and querying data.</p></div>
+    <div class="card"><h3>Power BI</h3><p>Creating reports and data visualizations.</p></div>
+    <div class="card"><h3>HTML</h3><p>Building the structure of websites.</p></div>
+    <div class="card"><h3>Project Management</h3><p>Project planning, organization, coordination and tracking.</p></div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications</h2>
+  <div class="certification-card">
+    <h3>Certificate in Project Management</h3>
+    <p>Training in project planning, organization, coordination, documentation and project tracking.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="projects-container">
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/300x180" alt="Sales Dashboard">
+      <h3>Sales Dashboard</h3>
+      <p>An Excel-based dashboard for analyzing sales performance and revenue.</p>
+      <button onclick="viewProject('Sales Dashboard')">View Project</button>
+    </div>
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/300x180" alt="SQL Data Analysis">
+      <h3>SQL Data Analysis</h3>
+      <p>A SQL project for analyzing customer and sales data.</p>
+      <button onclick="viewProject('SQL Data Analysis')">View Project</button>
+    </div>
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/300x180" alt="Power BI Dashboard">
+      <h3>Power BI Dashboard</h3>
+      <p>An interactive dashboard for turning raw data into useful insights.</p>
+      <button onclick="viewProject('Power BI Dashboard')">View Project</button>
+    </div>
+
+    <div class="project-card">
+      <img src="https://via.placeholder.com/300x180" alt="Project Management">
+      <h3>Project Management</h3>
+      <p>Project planning, organization, coordination and project tracking.</p>
+      <button onclick="viewProject('Project Management')">View Project</button>
+    </div>
+
+  </div>
+</section>
+
+<div id="projectDetails"></div>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p class="contact-intro">Interested in working with me or discussing a project? Feel free to get in touch.</p>
+  <div class="contact-info">
+    <p><strong>Email:</strong> kosiclement7@gmail.com</p>
+    <p><strong>Location:</strong> Nigeria</p>
+  </div>
+
+  <form id="contactForm">
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Write your message" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p id="response"></p>
+</section>
+
+<footer>
+  <h2>Let's Work Together</h2>
+  <p>Interested in working with me or discussing a project?</p>
+  <p>Email: kosiclement7@gmail.com</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="social-links">
+    <a href="https://github.com/" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+    <a href="https://x.com/" target="_blank">X</a>
+  </div>
+  <p>© 2026 Chukwu Clement. All rights reserved.</p>
+</footer>
+
+<button id="topButton">↑ Top</button>
+
+<script src="script.js"></script>
+</body>
+</html>
