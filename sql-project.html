@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sales Performance SQL Analysis | Chukwu Clement</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .sql-project {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: #111827;
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .project-header h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .project-header p {
+            color: #d1d5db;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .sql-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .sql-section h2 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .kpi-card {
+            background: #f5f7fa;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .kpi-card h3 {
+            color: #2563eb;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .kpi-card p {
+            font-weight: bold;
+        }
+
+        .sql-code {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        .insights li,
+        .recommendations li {
+            margin-bottom: 12px;
+        }
+
+        .project-actions {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .project-actions a {
+            display: inline-block;
+            padding: 13px 22px;
+            margin: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #2563eb;
+            color: white;
+        }
+
+        .project-actions a:hover {
+            background: #1d4ed8;
+        }
+
+        .back-button {
+            background: #374151 !important;
+        }
+
+        @media (max-width: 700px) {
+            .project-header h1 {
+                font-size: 30px;
+            }
+
+            .sql-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="sql-project">
+
+        <!-- PROJECT HEADER -->
+
+        <div class="project-header">
+
+            <h1>Sales Performance SQL Analysis</h1>
+
+            <p>
+                A SQL data analysis project examining sales performance,
+                revenue, product performance, customer spending and
+                business trends.
+            </p>
+
+            <p style="margin-top:15px;">
+                <strong>Tool:</strong> SQL / SQLite
+            </p>
+
+        </div>
+
+
+        <!-- BUSINESS OBJECTIVE -->
+
+        <section class="sql-section">
+
+            <h2>Business Objective</h2>
+
+            <p>
+                The objective of this project is to analyze sales transaction
+                data and generate useful business insights that can support
+                decision-making.
+            </p>
+
+            <p style="margin-top:15px;">
+                The analysis focuses on revenue, sales volume, products,
+                categories, customers and sales trends.
+            </p>
+
+        </section>
+
+
+        <!-- KPI SECTION -->
+
+        <section class="sql-section">
+
+            <h2>Key Performance Indicators</h2>
+
+            <div class="kpi-grid">
+
+                <div class="kpi-card">
+                    <h3>₦6.12M</h3>
+                    <p>Total Revenue</p>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>50</h3>
+                    <p>Units Sold</p>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>15</h3>
+                    <p>Total Orders</p>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>₦408K</h3>
+                    <p>Average Order Value</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATASET -->
+
+        <section class="sql-section">
+
+            <h2>Dataset</h2>
+
+            <p>
+                The dataset contains sales transactions with information
+                about orders, customers, products, categories, quantities,
+                prices and revenue.
+            </p>
+
+            <ul style="margin-top:15px; padding-left:25px;">
+
+                <li>Order ID</li>
+                <li>Order Date</li>
+                <li>Customer Name</li>
+                <li>Product</li>
+                <li>Category</li>
+                <li>Quantity</li>
+                <li>Unit Price</li>
+                <li>Total Sales</li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- SQL ANALYSIS -->
+
+        <section class="sql-section">
+
+            <h2>SQL Analysis</h2>
+
+            <p>
+                Example of the SQL queries used in the analysis:
+            </p>
+
+            <div class="sql-code">
+SELECT
+    product,
+    SUM(total_sales) AS total_revenue
+FROM sales
+GROUP BY product
+ORDER BY total_revenue DESC;
+            </div>
+
+            <br>
+
+            <p>
+                This query ranks products according to the revenue
+                they generated.
+            </p>
+
+        </section>
+
+
+        <!-- PRODUCT ANALYSIS -->
+
+        <section class="sql-section">
+
+            <h2>Product Performance</h2>
+
+            <p>
+                Product-level analysis was performed using SQL aggregation
+                functions such as SUM() and GROUP BY.
+            </p>
+
+            <div class="sql-code">
+SELECT
+    product,
+    SUM(quantity) AS units_sold
+FROM sales
+GROUP BY product
+ORDER BY units_sold DESC;
+            </div>
+
+            <p style="margin-top:15px;">
+                The <strong>Mouse</strong> was the best-selling product
+                by quantity, with <strong>15 units sold</strong>.
+            </p>
+
+        </section>
+
+
+        <!-- CATEGORY ANALYSIS -->
+
+        <section class="sql-section">
+
+            <h2>Category Performance</h2>
+
+            <p>
+                Revenue was grouped by product category to determine
+                which category contributed the most to overall sales.
+            </p>
+
+            <div class="sql-code">
+SELECT
+    category,
+    SUM(total_sales) AS total_revenue
+FROM sales
+GROUP BY category
+ORDER BY total_revenue DESC;
+            </div>
+
+            <p style="margin-top:15px;">
+                <strong>Electronics</strong> was the strongest
+                revenue-generating category.
+            </p>
+
+        </section>
+
+
+        <!-- MONTHLY ANALYSIS -->
+
+        <section class="sql-section">
+
+            <h2>Monthly Revenue Analysis</h2>
+
+            <div class="sql-code">
+SELECT
+    strftime('%Y-%m', order_date) AS month,
+    SUM(total_sales) AS monthly_revenue
+FROM sales
+GROUP BY month
+ORDER BY month;
+            </div>
+
+            <p style="margin-top:15px;">
+                Monthly analysis was used to compare revenue performance
+                across the available sales periods.
+            </p>
+
+        </section>
+
+
+        <!-- KEY INSIGHTS -->
+
+        <section class="sql-section insights">
+
+            <h2>Key Insights</h2>
+
+            <ul>
+
+                <li>
+                    The business generated
+                    <strong>₦6,122,000</strong> in total revenue.
+                </li>
+
+                <li>
+                    There were <strong>15 orders</strong> and
+                    <strong>50 units sold</strong>.
+                </li>
+
+                <li>
+                    The average order value was
+                    <strong>₦408,133.33</strong>.
+                </li>
+
+                <li>
+                    The Mouse recorded the highest sales volume
+                    with 15 units sold.
+                </li>
+
+                <li>
+                    Electronics was the strongest revenue-generating
+                    category.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- RECOMMENDATIONS -->
+
+        <section class="sql-section recommendations">
+
+            <h2>Business Recommendations</h2>
+
+            <ul>
+
+                <li>
+                    Maintain adequate inventory for high-volume products.
+                </li>
+
+                <li>
+                    Focus marketing efforts on high-revenue products
+                    and categories.
+                </li>
+
+                <li>
+                    Analyze lower-performing products to identify
+                    opportunities for improvement.
+                </li>
+
+                <li>
+                    Use customer spending data to identify
+                    high-value customers.
+                </li>
+
+                <li>
+                    Continue monitoring monthly revenue trends
+                    to support future sales planning.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section class="sql-section">
+
+            <h2>SQL Skills Demonstrated</h2>
+
+            <p>
+                SELECT • SUM() • COUNT() • AVG() • MAX() • MIN()
+                • GROUP BY • ORDER BY • ROUND() • Subqueries
+                • Date Functions • Data Aggregation • KPI Analysis
+            </p>
+
+        </section>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="project-actions">
+
+            <a href="Sales_Performance_Analysis.sql"
+               target="_blank">
+                View SQL File
+            </a>
+
+            <a href="index.html"
+               class="back-button">
+                Back to Portfolio
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
