@@ -166,13 +166,40 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
 
-      response.textContent =
-        "Thank you, " +
-        name +
-        "! Your message has been received.";
+      response.textContent = "Sending...";
 
+      fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: {
+          "Accept": "application/json"
+        }
+      })
+        .then(function (res) {
 
-      contactForm.reset();
+          if (res.ok) {
+
+            response.textContent =
+              "Thank you, " +
+              name +
+              "! Your message has been sent.";
+
+            contactForm.reset();
+
+          } else {
+
+            response.textContent =
+              "Something went wrong. Please email me directly at kosiclement7@gmail.com.";
+
+          }
+
+        })
+        .catch(function () {
+
+          response.textContent =
+            "Something went wrong. Please email me directly at kosiclement7@gmail.com.";
+
+        });
 
     });
 
