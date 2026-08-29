@@ -2,8 +2,18 @@
 <html>
 
 <head>
-  <title>Chukwu Clement Kosisochukwu | Portfolio</title>
+  <title>Chukwu Clement | Data Analyst &amp; Web Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Chukwu Clement — Data Analyst & Web Developer building dashboards, SQL analysis, and web projects. View my work and get in touch.">
+
+  <meta property="og:title" content="Chukwu Clement | Data Analyst & Web Developer">
+  <meta property="og:description" content="Dashboards, SQL analysis, and web development projects. View my work and get in touch.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/kosiclement7-collab/kosiclement7-collab.github.io/main/profile.jpg">
+  <meta property="og:url" content="https://kosiclement7-collab.github.io/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -49,8 +59,8 @@
 
     <div class="hero-text">
       <p class="welcome">HELLO, I'M</p>
-      <h1>Chukwu Clement Kosisochukwu</h1>
-      <h2>      Data Analyst &amp; Web developer</h2>
+      <h1>Chukwu Clement</h1>
+      <h2>Data Analyst &amp; Project Manager</h2>
 
       <p class="hero-description">
         Mathematics graduate passionate about turning data into
@@ -396,13 +406,14 @@
     </div>
 
 
-    <form id="contactForm">
+    <form id="contactForm" action="https://formspree.io/f/mvkogpdr" method="POST">
 
       <label for="name">Name</label>
 
       <input
         type="text"
         id="name"
+        name="name"
         placeholder="Your name"
         required
       >
@@ -413,6 +424,7 @@
       <input
         type="email"
         id="email"
+        name="email"
         placeholder="Your email"
         required
       >
@@ -422,6 +434,7 @@
 
       <textarea
         id="message"
+        name="message"
         placeholder="Write your message..."
         required
       ></textarea>
