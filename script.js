@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // DARK MODE
   // ==============================
 
-  const themeButton = document.getElementById("themeButton");
+  const themeButton =
+    document.getElementById("themeButton");
 
   if (themeButton) {
 
@@ -27,10 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
       document.body.classList.toggle("dark-mode");
 
-      if (document.body.classList.contains("dark-mode")) {
+      if (
+        document.body.classList.contains("dark-mode")
+      ) {
+
         themeButton.textContent = "Light Mode";
+
       } else {
+
         themeButton.textContent = "Dark Mode";
+
       }
 
     });
@@ -42,31 +49,49 @@ document.addEventListener("DOMContentLoaded", function () {
   // MOBILE MENU
   // ==============================
 
-  const menuButton = document.getElementById("menuButton");
-  const navLinks = document.getElementById("navLinks");
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const navLinks =
+    document.getElementById("navLinks");
 
   if (menuButton && navLinks) {
 
-    menuButton.addEventListener("click", function () {
+    menuButton.addEventListener(
+      "click",
+      function () {
 
-      if (navLinks.style.display === "block") {
-        navLinks.style.display = "none";
-      } else {
-        navLinks.style.display = "block";
+        if (
+          navLinks.style.display === "block"
+        ) {
+
+          navLinks.style.display = "none";
+
+        } else {
+
+          navLinks.style.display = "block";
+
+        }
+
       }
-
-    });
+    );
 
 
     // Close menu after clicking a link
 
-    const links = navLinks.querySelectorAll("a");
+    const links =
+      navLinks.querySelectorAll("a");
 
     links.forEach(function (link) {
 
-      link.addEventListener("click", function () {
-        navLinks.style.display = "none";
-      });
+      link.addEventListener(
+        "click",
+        function () {
+
+          navLinks.style.display = "none";
+
+        }
+      );
 
     });
 
@@ -77,23 +102,28 @@ document.addEventListener("DOMContentLoaded", function () {
   // CONTACT ME BUTTON
   // ==============================
 
-  const contactButton = document.getElementById("contactButton");
+  const contactButton =
+    document.getElementById("contactButton");
 
   if (contactButton) {
 
-    contactButton.addEventListener("click", function () {
+    contactButton.addEventListener(
+      "click",
+      function () {
 
-      const contactSection = document.getElementById("contact");
+        const contactSection =
+          document.getElementById("contact");
 
-      if (contactSection) {
+        if (contactSection) {
 
-        contactSection.scrollIntoView({
-          behavior: "smooth"
-        });
+          contactSection.scrollIntoView({
+            behavior: "smooth"
+          });
+
+        }
 
       }
-
-    });
+    );
 
   }
 
@@ -102,106 +132,272 @@ document.addEventListener("DOMContentLoaded", function () {
   // TOP BUTTON
   // ==============================
 
-  const topButton = document.getElementById("topButton");
+  const topButton =
+    document.getElementById("topButton");
 
   if (topButton) {
 
-    window.addEventListener("scroll", function () {
+    // Initial state
 
-      if (window.scrollY > 300) {
-        topButton.style.display = "block";
-      } else {
-        topButton.style.display = "none";
+    topButton.style.display = "none";
+
+
+    window.addEventListener(
+      "scroll",
+      function () {
+
+        if (window.scrollY > 300) {
+
+          topButton.style.display =
+            "block";
+
+        } else {
+
+          topButton.style.display =
+            "none";
+
+        }
+
       }
+    );
 
-    });
 
+    topButton.addEventListener(
+      "click",
+      function () {
 
-    topButton.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    });
+      }
+    );
 
   }
 
 
   // ==============================
-  // CONTACT FORM
+  // BACKEND CONTACT FORM
   // ==============================
 
-  const contactForm = document.getElementById("contactForm");
-  const response = document.getElementById("response");
+  const contactForm =
+    document.getElementById("contactForm");
 
-  if (contactForm && response) {
-
-    contactForm.addEventListener("submit", function (event) {
-
-      event.preventDefault();
-
-      const name =
-        document.getElementById("name").value.trim();
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const message =
-        document.getElementById("message").value.trim();
+  const responseMessage =
+    document.getElementById("response");
 
 
-      if (
-        name === "" ||
-        email === "" ||
-        message === ""
-      ) {
+  if (contactForm && responseMessage) {
 
-        response.textContent =
-          "Please complete all fields.";
+    contactForm.addEventListener(
+      "submit",
+      async function (event) {
 
-        return;
-
-      }
+        event.preventDefault();
 
 
-      response.textContent = "Sending...";
+        // Get form fields
 
-      fetch(contactForm.action, {
-        method: "POST",
-        body: new FormData(contactForm),
-        headers: {
-          "Accept": "application/json"
+        const name =
+          document
+            .getElementById("name")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+        // Find submit button
+
+        const submitButton =
+          contactForm.querySelector(
+            "button[type='submit']"
+          );
+
+
+        // ==============================
+        // VALIDATION
+        // ==============================
+
+        if (
+          name === "" ||
+          email === "" ||
+          message === ""
+        ) {
+
+          responseMessage.textContent =
+            "Please complete all fields.";
+
+          return;
+
         }
-      })
-        .then(function (res) {
 
-          if (res.ok) {
 
-            response.textContent =
-              "Thank you, " +
-              name +
-              "! Your message has been sent.";
+        // Basic email validation
 
-            contactForm.reset();
+        const emailPattern =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-          } else {
 
-            response.textContent =
-              "Something went wrong. Please email me directly at kosiclement7@gmail.com.";
+        if (!emailPattern.test(email)) {
+
+          responseMessage.textContent =
+            "Please enter a valid email address.";
+
+          return;
+
+        }
+
+
+        // ==============================
+        // SENDING STATE
+        // ==============================
+
+        if (submitButton) {
+
+          submitButton.disabled = true;
+
+          submitButton.textContent =
+            "Sending...";
+
+        }
+
+
+        responseMessage.textContent =
+          "Sending your message...";
+
+
+        // ==============================
+        // SEND TO NODE.JS BACKEND
+        // ==============================
+
+        try {
+
+          const apiResponse =
+            await fetch(
+              "https://chukwu-clement-portfolio-api.onrender.com/api/contact",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+
+                  name: name,
+
+                  email: email,
+
+                  message: message
+
+                })
+
+              }
+            );
+
+
+          // Try to read JSON response
+
+          let data = {};
+
+          try {
+
+            data =
+              await apiResponse.json();
+
+          } catch (jsonError) {
+
+            data = {};
 
           }
 
-        })
-        .catch(function () {
 
-          response.textContent =
-            "Something went wrong. Please email me directly at kosiclement7@gmail.com.";
+          // ==============================
+          // SUCCESS
+          // ==============================
 
-        });
+          if (
+            apiResponse.ok &&
+            data.success
+          ) {
 
-    });
+            responseMessage.textContent =
+              "Thank you, " +
+              name +
+              "! Your message has been sent successfully.";
+
+            contactForm.reset();
+
+
+          }
+
+
+          // ==============================
+          // SERVER ERROR
+          // ==============================
+
+          else {
+
+            responseMessage.textContent =
+              data.message ||
+              "Unable to send your message. Please try again.";
+
+          }
+
+
+        }
+
+
+        // ==============================
+        // CONNECTION ERROR
+        // ==============================
+
+        catch (error) {
+
+          console.error(
+            "Backend error:",
+            error
+          );
+
+
+          responseMessage.textContent =
+            "Unable to connect to the server. Please try again later.";
+
+        }
+
+
+        // ==============================
+        // RESTORE BUTTON
+        // ==============================
+
+        finally {
+
+          if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+              "Send Message";
+
+          }
+
+        }
+
+      }
+    );
 
   }
 
@@ -215,89 +411,137 @@ document.addEventListener("DOMContentLoaded", function () {
 function viewProject(projectName) {
 
   const details =
-    document.getElementById("projectDetails");
+    document.getElementById(
+      "projectDetails"
+    );
+
 
   if (!details) {
     return;
   }
 
 
-  if (projectName === "Sales Dashboard") {
+  // ==============================
+  // SALES DASHBOARD
+  // ==============================
+
+  if (
+    projectName ===
+    "Sales Dashboard"
+  ) {
 
     details.innerHTML = `
+
       <h2>Sales Dashboard</h2>
 
       <p>
-        An Excel-based dashboard designed to analyze
-        sales performance, revenue and key business
-        metrics.
+        An Excel-based dashboard designed
+        to analyze sales performance,
+        revenue and key business metrics.
       </p>
 
       <p>
-        <strong>Tool:</strong> Microsoft Excel
+        <strong>Tool:</strong>
+        Microsoft Excel
       </p>
 
-      <button onclick="closeProjectDetails()">
+      <button
+        onclick="closeProjectDetails()"
+      >
         Close
       </button>
+
     `;
 
   }
 
 
-  else if (projectName === "SQL Data Analysis") {
+  // ==============================
+  // SQL DATA ANALYSIS
+  // ==============================
+
+  else if (
+    projectName ===
+    "SQL Data Analysis"
+  ) {
 
     details.innerHTML = `
+
       <h2>SQL Data Analysis</h2>
 
       <p>
-        A SQL project for analyzing customer,
-        sales and business data.
+        A SQL project for analyzing
+        customer, sales and business data.
       </p>
 
       <p>
-        <strong>Tool:</strong> SQL
+        <strong>Tool:</strong>
+        SQL
       </p>
 
-      <button onclick="closeProjectDetails()">
+      <button
+        onclick="closeProjectDetails()"
+      >
         Close
       </button>
+
     `;
 
   }
 
 
-  else if (projectName === "Power BI Dashboard") {
+  // ==============================
+  // POWER BI DASHBOARD
+  // ==============================
+
+  else if (
+    projectName ===
+    "Power BI Dashboard"
+  ) {
 
     details.innerHTML = `
+
       <h2>Power BI Dashboard</h2>
 
       <p>
-        An interactive Power BI dashboard that
-        transforms raw data into useful business
-        insights.
+        An interactive Power BI dashboard
+        that transforms raw data into
+        useful business insights.
       </p>
 
       <p>
-        <strong>Tool:</strong> Power BI
+        <strong>Tool:</strong>
+        Power BI
       </p>
 
-      <button onclick="closeProjectDetails()">
+      <button
+        onclick="closeProjectDetails()"
+      >
         Close
       </button>
+
     `;
 
   }
 
 
-  else if (projectName === "Project Management") {
+  // ==============================
+  // PROJECT MANAGEMENT
+  // ==============================
+
+  else if (
+    projectName ===
+    "Project Management"
+  ) {
 
     details.innerHTML = `
+
       <h2>Project Management</h2>
 
       <p>
-        A project management project demonstrating
-        planning, organization, coordination,
+        A project management project
+        demonstrating planning,
+        organization, coordination,
         documentation and project tracking.
       </p>
 
@@ -306,17 +550,27 @@ function viewProject(projectName) {
         Certificate in Project Management
       </p>
 
-      <button onclick="closeProjectDetails()">
+      <button
+        onclick="closeProjectDetails()"
+      >
         Close
       </button>
+
     `;
 
   }
 
 
+  // ==============================
+  // SCROLL TO DETAILS
+  // ==============================
+
   details.scrollIntoView({
+
     behavior: "smooth",
+
     block: "center"
+
   });
 
 }
@@ -329,75 +583,15 @@ function viewProject(projectName) {
 function closeProjectDetails() {
 
   const details =
-    document.getElementById("projectDetails");
+    document.getElementById(
+      "projectDetails"
+    );
+
 
   if (details) {
+
     details.innerHTML = "";
+
   }
-
-}// ===============================
-// BACKEND CONTACT FORM
-// ===============================
-
-const contactForm = document.getElementById("contactForm");
-const responseMessage = document.getElementById("response");
-
-if (contactForm) {
-
-  contactForm.addEventListener("submit", async function (event) {
-
-    event.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-    responseMessage.textContent = "Sending...";
-
-    try {
-
-      const response = await fetch(
-        "https://chukwu-clement-portfolio-api.onrender.com/api/contact",
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json"
-          },
-
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            message: message
-          })
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.success) {
-
-        responseMessage.textContent =
-          "Message sent successfully!";
-
-        contactForm.reset();
-
-      } else {
-
-        responseMessage.textContent =
-          data.message || "Unable to send message.";
-
-      }
-
-    } catch (error) {
-
-      console.error("Backend error:", error);
-
-      responseMessage.textContent =
-        "Unable to connect to the server. Please try again.";
-
-    }
-
-  });
 
 }
