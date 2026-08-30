@@ -335,4 +335,69 @@ function closeProjectDetails() {
     details.innerHTML = "";
   }
 
+}// ===============================
+// BACKEND CONTACT FORM
+// ===============================
+
+const contactForm = document.getElementById("contactForm");
+const responseMessage = document.getElementById("response");
+
+if (contactForm) {
+
+  contactForm.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    responseMessage.textContent = "Sending...";
+
+    try {
+
+      const response = await fetch(
+        "https://chukwu-clement-portfolio-api.onrender.com/api/contact",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        responseMessage.textContent =
+          "Message sent successfully!";
+
+        contactForm.reset();
+
+      } else {
+
+        responseMessage.textContent =
+          data.message || "Unable to send message.";
+
+      }
+
+    } catch (error) {
+
+      console.error("Backend error:", error);
+
+      responseMessage.textContent =
+        "Unable to connect to the server. Please try again.";
+
+    }
+
+  });
+
 }
