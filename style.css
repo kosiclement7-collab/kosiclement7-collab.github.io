@@ -280,6 +280,22 @@ nav {
   border-radius: 8px;
 }
 
+/* Explicit color for all "View Project" links so they stay
+   consistent regardless of whether the browser has visited
+   the link before (visited links default to purple, unvisited
+   to blue, unless overridden). */
+.project-button,
+.project-button:link,
+.project-button:visited {
+  color: #7c3aed;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.project-button:hover {
+  opacity: 0.8;
+}
+
 #projectDetails {
   max-width: 700px;
   margin: 30px auto;
