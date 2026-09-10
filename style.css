@@ -287,13 +287,19 @@ nav {
 .project-button,
 .project-button:link,
 .project-button:visited {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #7c3aed;
+  border-radius: 6px;
   color: #7c3aed;
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .project-button:hover {
-  opacity: 0.8;
+  background: #7c3aed;
+  color: white;
+  opacity: 1;
 }
 
 #projectDetails {
